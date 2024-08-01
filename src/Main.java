@@ -23,6 +23,13 @@ public class Main {
         list.offerFirst("Brisbane");
         list.offerLast("Perth");
 //        Stack methods
-        list.push("Alice Springs");
+        list.push("Alice Springs");// placed at the beginning of the list
     }
-}
+
+    private static void removeElements(LinkedList<String> list) {
+        list.remove(4);
+        list.remove("Brisbane");
+    }
+    }
+
+
