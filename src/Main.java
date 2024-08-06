@@ -1,3 +1,5 @@
+import com.sun.source.tree.UsesTree;
+
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -15,13 +17,18 @@ public class Main {
         addMoreElements(placesToVisit);
         System.out.println(placesToVisit);
 
+//        changing the value of the element using set()
+
+
 //        removeElements(placesToVisit);
 //        System.out.println(placesToVisit);
 
-        gettingElements(placesToVisit);
-        printItinerary(placesToVisit);
-        printItinerary1(placesToVisit);
-        printItinerary2(placesToVisit);
+//        gettingElements(placesToVisit);
+//        printItinerary(placesToVisit);
+//        printItinerary1(placesToVisit);
+//        printItinerary2(placesToVisit);
+//        testIterator(placesToVisit);
+        testListIterator(placesToVisit);
 
     }
 
@@ -105,6 +112,7 @@ public class Main {
 
     private static void printItinerary(LinkedList<String> list){
         System.out.println("Trip starts at : " + list.getFirst());
+//        using for loop
         for (int i = 1; i < list.size() ; i++) {
 
             System.out.println("--> From: " + list.get(i-1) + " to " + list.get(i));
@@ -115,13 +123,9 @@ public class Main {
 
     private static void printItinerary1(LinkedList<String> list){
         System.out.println("Trip starts at : " + list.getFirst());
-//        for (int i = 1; i < list.size() ; i++) {
-//
-//            System.out.println("--> From: " + list.get(i-1) + " to " + list.get(i));
-//
-//        }
+
         String previousTown = list.getFirst();
-//        Traverse through all the elements
+//        Traverse through all the elements using foreach loop
         for (String town:list){
             System.out.println("--> From" + previousTown + " to " + town);
             previousTown = town;
@@ -134,17 +138,45 @@ public class Main {
         String previousTown = list.getFirst();
         //        define a listIterator and use method overloading
         ListIterator<String> iterator = list.listIterator(1);
-////        Traverse through all the elements
-//        for (String town:list){
-//            System.out.println("--> From" + previousTown + " to " + town);
-//            previousTown = town;
-//        }
+////        Traverse through all the elements using iterator
         while (iterator.hasNext()){
             var town = iterator.next();
             System.out.println("--> From" + previousTown + " to " + town);
             previousTown = town;
         }
         System.out.println("Trip ends at : " + list.getLast());
+    }
+
+    private static void testIterator(LinkedList<String> list){
+        var iterator = list.iterator();
+        while (iterator.hasNext()){
+//            System.out.println(iterator.next());
+            if (iterator.next().equals("Brisbane")){
+                iterator.remove();
+
+            }
+        }
+        System.out.println(list);
+    }
+
+    private static void testListIterator(LinkedList<String> list){
+        var iterator = list.listIterator();
+        while (iterator.hasNext()){
+//            System.out.println(iterator.next());
+            if (iterator.next().equals("Brisbane")){
+                iterator.remove();
+                iterator.add("Cairns"); //using add() method on ListIterator and not list
+
+            }
+        }
+        while (iterator.hasPrevious()){
+            System.out.println(iterator.previous()); //printing the list backwards
+        }
+        System.out.println(list);
+
+        var iterator2 = list.listIterator(3); //printing a specific element of the list
+//        System.out.println(iterator2.next());
+        System.out.println(iterator2.previous());
     }
     }
 
